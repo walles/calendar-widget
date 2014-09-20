@@ -34,6 +34,7 @@ import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_FILL_ALL_D
 import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_FILL_ALL_DAY_DEFAULT;
 import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_INDICATE_ALERTS;
 import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_INDICATE_RECURRING;
+import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_INDICATE_UNDECIDED;
 import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_MULTILINE_TITLE;
 import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_MULTILINE_TITLE_DEFAULT;
 import static com.plusonelabs.calendar.prefs.CalendarPreferences.PREF_SHOW_END_TIME;
@@ -69,6 +70,7 @@ public class CalendarEventVisualizer implements IEventVisualizer<CalendarEvent> 
 		setEventDetails(event, rv);
 		setAlarmActive(event, rv);
 		setRecurring(event, rv);
+		setUndecided(event, rv);
 		setColor(event, rv);
 		return rv;
 	}
@@ -112,6 +114,11 @@ public class CalendarEventVisualizer implements IEventVisualizer<CalendarEvent> 
 	private void setRecurring(CalendarEvent event, RemoteViews rv) {
         boolean showIndication = event.isRecurring() && prefs.getBoolean(PREF_INDICATE_RECURRING, false);
         setIndicator(rv, showIndication, R.id.event_entry_indicator_recurring, R.attr.eventEntryRecurring);
+    }
+
+    private void setUndecided(CalendarEvent event, RemoteViews rv) {
+        boolean showIndication = event.isUndecided() && prefs.getBoolean(PREF_INDICATE_UNDECIDED, true);
+        setIndicator(rv, showIndication, R.id.event_entry_indicator_undecided, R.attr.eventEntryUndecided);
     }
 
     private void setIndicator(RemoteViews rv, boolean showIndication, int viewId, int imageAttrId) {

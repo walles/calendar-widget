@@ -15,6 +15,7 @@ public class CalendarEvent extends Event {
 	private String location;
 	private boolean alarmActive;
 	private boolean recurring;
+	private boolean undecided;
 	private boolean spansMultipleDays;
 	private CalendarEvent originalEvent;
 
@@ -80,6 +81,14 @@ public class CalendarEvent extends Event {
 
 	public boolean isRecurring() {
 		return recurring;
+	}
+
+	public boolean isUndecided() {
+		return undecided;
+	}
+
+	public void setUndecided(boolean undecided) {
+		this.undecided = undecided;
 	}
 
 	public boolean isPartOfMultiDayEvent() {
@@ -152,7 +161,7 @@ public class CalendarEvent extends Event {
 				+ (title != null ? "title=" + title + ", " : "")
 				+ (endDate != null ? "endDate=" + endDate + ", " : "") + "color=" + color
 				+ ", allDay=" + allDay + ", alarmActive=" + alarmActive + ", ic_recurring_light="
-				+ recurring + ", spansMultipleDays=" + spansMultipleDays + ", "
+				+ recurring + ", undecided=" + undecided + ", spansMultipleDays=" + spansMultipleDays + ", "
 				+ (originalEvent != null ? "originalEvent=" + originalEvent + ", " : "")
 				+ (location != null ? "location=" + location : "") + "]";
 	}
